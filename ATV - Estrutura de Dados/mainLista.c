@@ -165,13 +165,66 @@ void inserirOrdenado(struct Node **head, int data)
 int main()
 {
     struct Node *lista = criarLista();
-    inserirOrdenado(&lista, 1);
-    inserirOrdenado(&lista, 2);
-    inserirOrdenado(&lista, 4);
-    inserirOrdenado(&lista, 5);
-    exibirLista(lista); // Saída: 3 -> 5 -> 8 -> NULL
-    inserirOrdenado(&lista, 3);
-    exibirLista(lista);
+    int op;
+    int valor;
 
-    return 0;
+    do
+    {
+            printf("---------------- LISTA ENCADEADA SIMPLES ----------------");
+            printf("\n1 - Inserir no inicio\n2 - exibir a lista atual\n3 - verificar se a lista esta vazia\n4 - Buscar no na lista\n5 - excluir no da lista\n6 - liberar memoria da lista\n7 - inserir no de forma ordenada na lista\n8- Sair do programa\n");
+            scanf("%d", &op);
+
+            switch (op)
+            {
+            case 1:
+                printf("Digite o valor para inserir no inicio: ");
+                scanf("%d", &valor);
+                inserirLista(&lista, valor);
+                printf("valor adicionado!");
+                break;
+            case 2:
+                printf("Exibindo a lista atual completa:\n");
+                exibirLista(lista);
+                break;
+            case 3:
+                printf("Verificando se a lista esta vazia");
+                verificarVazia(lista);
+                break;
+            case 4:
+                printf("Digite o valor a ser buscado na lista: ");
+                scanf("%d", &valor);
+                struct Node *varBuscado = buscarLista(lista, valor);
+
+                if (varBuscado != NULL)
+                {
+                    printf("Valor %d encontrado na lista.\n", varBuscado->data);
+                }
+                else
+                {
+                    printf("Valor %d não encontrado na lista.\n", valor);
+                }
+                break;
+            case 5:
+                printf("Digite o valor a ser excluido da lista: ");
+                scanf("%d", &valor);
+                excluirLista(&lista, valor);
+                break;
+            case 6:
+                printf("Liberando a lista...");
+                liberarLista(&lista);
+                break;
+            case 7:
+                printf("Digite o valor que deseja inserir na lista de maneira ordenada: ");
+                scanf("%d", &valor);
+                inserirOrdenado(&lista, valor);
+                break;
+            case 8:
+                printf("Saindo do programa...");
+                break;
+            default:
+                printf("Opção invalida. Por favor, tente novamente.\n");
+            }
+        } while (op != 8);
+
+        return 0;
 }
