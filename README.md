@@ -1,6 +1,3 @@
-
-
-```markdown
 # Estruturas de Dados em C
 
 Este repositório contém a atividade e o  trabalho prático proposto na disciplina de Estruturas de Dados pelo nosso professor Berg Carvalho, com foco em listas encadeadas e outras estruturas. 
