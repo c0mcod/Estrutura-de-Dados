@@ -35,24 +35,6 @@ Este projeto contém a implementação de uma lista encadeada em C, incluindo op
 - **excluirLista**: exclui um elemento específico da lista.
 - **liberarLista**: libera a memória alocada para a lista.
 
-## Como Executar
-
-1. Clone o repositório:
-    ```bash
-    git clone https://github.com/usuario/repositorio.git
-    cd repositorio
-    ```
-
-2. Compile o código:
-    ```bash
-    gcc main.c lista.c -o lista
-    ```
-
-3. Execute o programa:
-    ```bash
-    ./lista
-    ```
-
 ## Exemplos de Uso
 
 ```c
