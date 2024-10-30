@@ -31,22 +31,17 @@ typedef struct mercadoDeFrutas
     float preco;
 } Fruta;
 
-
-typedef struct No // Construção padrão de uma lista, um dado do tipo da struct ponteiro para o próximo nó
+typedef struct No
 {
-    // a váriavel "fruta" é do tipo da estrutura anterior que permite que cada nó(dessa estrutura No) possa ter todos os dados de uma fruta nesse mercado
     Fruta fruta;
     struct No *prox;
 } No;
 
-
-No *criarNo(Fruta fruta)// Função para criar o primeiro nó
+No *criarNo(Fruta fruta)
 {
     No *novoNo = (No *)malloc(sizeof(No));
-
     if (novoNo)
     {
-    // novoNo->frut significa: "vá até o ponteiro novoNo, acesse o que ele está apontando (a estrutura em si), e então acesse o membro frut dessa estrutura."
         novoNo->fruta = fruta;
         novoNo->prox = NULL;
     }
@@ -54,60 +49,82 @@ No *criarNo(Fruta fruta)// Função para criar o primeiro nó
 }
 
 // Função para criar a lista
-struct No *criarLista()
+No *criarLista()
 {
     return NULL;
 }
 
-struct No *cadastrarFruta(struct No *lista){
-    struct No*novoNo = (struct No *) malloc(sizeof(struct No));
-    if (novoNo == NULL){
-        printf("Não foi possível alocar memoria para a nova fruta.\n");
+No *cadastrarFruta(No *lista)
+{
+    No *novoNo = (No *)malloc(sizeof(No));
+    if (novoNo == NULL)
+    {
+        printf("Não foi possível alocar memória para a nova fruta.\n");
         return lista;
     }
+
     printf("Digite o código da fruta: ");
     scanf("%d", &novoNo->fruta.codigo);
 
-    printf("digite o nome da fruta: ");
-    scanf("%d", &novoNo -> fruta.nome);
+    printf("Digite o nome da fruta: ");
+    scanf("%s", novoNo->fruta.nome);
 
-    printf("Digite a quantidade disponivel: ");
-    scanf("%d", &novoNo -> fruta.quantidade);
+    printf("Digite a quantidade disponível: ");
+    scanf("%d", &novoNo->fruta.quantidade);
 
     printf("Digite o preço: ");
     scanf("%f", &novoNo->fruta.preco);
 
-    novoNo -> prox = lista;
+    novoNo->prox = lista;
     return novoNo;
 }
 
-int main() {
-    struct No *listaFrutas = criarLista();
+int main()
+{
+    No *listaFrutas = criarLista();
     int op;
-    int valor;
-    do {
-        exibirMenu();
+
+    do
+    {
+        printf("\n--- Mercado de Frutas ---\n");
+        printf("1 - Cadastrar fruta\n");
+        printf("2 - Listar frutas\n");
+        printf("3 - Buscar fruta\n");
+        printf("4 - Alterar fruta\n");
+        printf("5 - Excluir fruta\n");
+        printf("6 - Vender fruta\n");
+        printf("7 - Sair\n");
+        printf("Digite a opção: ");
         scanf("%d", &op);
-        switch(op) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
-            case 6:
-                break;
-            case 7:
-                printf("Encerrando o programa.\n");
-                break;
-            default:
-                printf("Opção inválida. Tente novamente.\n");
+
+        switch (op)
+        {
+        case 1:
+            listaFrutas = cadastrarFruta(listaFrutas);
+            printf("Fruta cadastrada com sucesso!\n");
+            break;
+        case 2:
+            // Aqui vai a função listar frutas, que ainda não foi implementada
+            break;
+        case 3:
+            // Função buscar fruta
+            break;
+        case 4:
+            // Função alterar fruta
+            break;
+        case 5:
+            // Função excluir fruta
+            break;
+        case 6:
+            // Função vender fruta
+            break;
+        case 7:
+            printf("Encerrando o programa.\n");
+            break;
+        default:
+            printf("Opção inválida. Tente novamente.\n");
         }
-    } while(op != 7);
+    } while (op != 7);
 
     return 0;
 }

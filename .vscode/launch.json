@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/netos/OneDrive/Documentos/GitHub/Estrutura de Dados/ATV - Estrutura de Dados",
-      "program": "c:/Users/netos/OneDrive/Documentos/GitHub/Estrutura de Dados/ATV - Estrutura de Dados/build/Debug/outDebug",
+      "cwd": "c:/Users/netos/OneDrive/Documentos/GitHub/Estrutura de Dados/Trabalho - Estrutura de Dados",
+      "program": "c:/Users/netos/OneDrive/Documentos/GitHub/Estrutura de Dados/Trabalho - Estrutura de Dados/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
