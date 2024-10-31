@@ -12,7 +12,7 @@ struct Node *criarLista()
     return NULL;
 }
 
-void inserirLista(struct Node **head, int valor)
+void inserirLista(struct Node *head, int valor)
 {
     struct Node *novoNode = (struct Node *)malloc(sizeof(struct Node));
 
@@ -27,9 +27,9 @@ void inserirLista(struct Node **head, int valor)
 
     // novoNode vai apontar pro que o head estava apontando, no caso, o antigo 1° nó
     // o novo node agora tá apontando pro antigo, o que mantem a conexão, e logo fazemos o head apontar pro novoNode
-    novoNode->next = *head;
+    novoNode->next = head;
     // Head atualizado apontando para o novo 1° nó(transcendi quando entendi essa lógica kkk)
-    *head = novoNode;
+    head = novoNode;
 }
 
 void exibirLista(struct Node *head)

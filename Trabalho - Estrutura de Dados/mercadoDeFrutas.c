@@ -198,6 +198,35 @@ No *buscarFruta(No *lista) {
     return lista;
 }
 
+void excluirFruta(No **lista, int codigo){
+    No *atual = *lista;
+    No *anterior = NULL;
+
+        while(atual != NULL && atual->fruta.codigo != codigo ){
+            anterior = atual;
+            atual = atual -> prox;
+        }
+
+        // verificar se a fruta não foi encontrada(se ela for null)
+        if(atual == NULL){
+            printf("Erro: Fruta com código %d não encontrada!\n", codigo);
+            return;
+        }
+
+        // verificar se a fruta é a primeira da lista(cabeça)
+        if(anterior == NULL){
+            *lista = atual->prox;
+        }
+
+        // verificar se a fruta está em outro lugar, que não seja a cabeça(primeira)
+        else{
+            anterior->prox = atual->prox;
+            }
+
+        free(atual);
+        printf("Fruta de codigo %d excluída.", codigo);
+}
+
 int main() {
     No *listaFrutas = criarLista();
     int op;
