@@ -177,6 +177,7 @@ No *alterarFruta(No *lista) {
 
 // Função para buscar uma fruta pelo código
 No *buscarFruta(No *lista) {
+    // mesmo paranuê de encontrar pelo codigo da ultima função, só troquei os prints para imprimir as informações
     int codigo;
     printf("Digite o código da fruta que deseja buscar: ");
     scanf("%d", &codigo);
@@ -218,7 +219,8 @@ int main() {
         {
         case 1:
             listaFrutas = cadastrarFruta(listaFrutas);
-            printf("Fruta cadastrada com sucesso!\n");
+            // anotação de debug:
+            // fazer a função se repetir para colocar um novo codigo se o usuario tiver inserido um codigo que já existe
             break;
         case 2:
             exibirListaFruta(listaFrutas);
@@ -227,13 +229,13 @@ int main() {
             listaFrutas = buscarFruta(listaFrutas);
             break;
         case 4:
-            // Função alterar fruta
+            listaFrutas = alterarFruta(listaFrutas);
             break;
         case 5:
-            // Função excluir fruta
+            // Função - excluir fruta
             break;
         case 6:
-            // Função vender fruta
+            // Função - vender fruta(não faço ideia de como tem que ser isso)
             break;
         case 7:
             printf("Encerrando o programa.\n");
