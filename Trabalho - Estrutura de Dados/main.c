@@ -145,14 +145,17 @@ void exibirListaFruta(No *lista)
 }
 
 // Função para alterar os dados de uma fruta
-No *alterarFruta(No *lista) {
+No *alterarFruta(No *lista)
+{
     int codigo;
     printf("Digite o código da fruta que deseja alterar: ");
     scanf("%d", &codigo);
 
     No *atual = lista;
-    while (atual != NULL) {
-        if (atual->fruta.codigo == codigo) {
+    while (atual != NULL)
+    {
+        if (atual->fruta.codigo == codigo)
+        {
             // se a fruta for encontrada pelo codigo, novos dados serão solicitados para o usuário
             printf("Fruta encontrada! Digite os novos dados:\n");
             // mesma coisa do de cadastramento, alterando diretamente no campo da struct
@@ -176,15 +179,18 @@ No *alterarFruta(No *lista) {
 }
 
 // Função para buscar uma fruta pelo código
-No *buscarFruta(No *lista) {
+No *buscarFruta(No *lista)
+{
     // mesmo paranuê de encontrar pelo codigo da ultima função, só troquei os prints para imprimir as informações
     int codigo;
     printf("Digite o código da fruta que deseja buscar: ");
     scanf("%d", &codigo);
 
     No *atual = lista;
-    while (atual != NULL) {
-        if (atual->fruta.codigo == codigo) {
+    while (atual != NULL)
+    {
+        if (atual->fruta.codigo == codigo)
+        {
             printf("Fruta encontrada!\n\n");
             printf("Nome da fruta: %s\n", atual->fruta.nome);
             printf("Quantidade disponível: %d\n", atual->fruta.quantidade);
@@ -198,36 +204,116 @@ No *buscarFruta(No *lista) {
     return lista;
 }
 
-void excluirFruta(No **lista, int codigo){
+void excluirFruta(No **lista, int codigo)
+{
     No *atual = *lista;
     No *anterior = NULL;
 
-        while(atual != NULL && atual->fruta.codigo != codigo ){
-            anterior = atual;
-            atual = atual -> prox;
-        }
+    while (atual != NULL && atual->fruta.codigo != codigo)
+    {
+        anterior = atual;
+        atual = atual->prox;
+    }
 
-        // verificar se a fruta não foi encontrada(se ela for null)
-        if(atual == NULL){
-            printf("Erro: Fruta com código %d não encontrada!\n", codigo);
-            return;
-        }
+    // verificar se a fruta não foi encontrada(se ela for null)
+    if (atual == NULL)
+    {
+        printf("Erro: Fruta com código %d não encontrada!\n", codigo);
+        return;
+    }
 
-        // verificar se a fruta é a primeira da lista(cabeça)
-        if(anterior == NULL){
-            *lista = atual->prox;
-        }
+    // verificar se a fruta é a primeira da lista(cabeça)
+    if (anterior == NULL)
+    {
+        *lista = atual->prox;
+    }
 
-        // verificar se a fruta está em outro lugar, que não seja a cabeça(primeira)
-        else{
-            anterior->prox = atual->prox;
-            }
+    // verificar se a fruta está em outro lugar, que não seja a cabeça(primeira)
+    else
+    {
+        anterior->prox = atual->prox;
+    }
 
-        free(atual);
-        printf("Fruta de codigo %d excluída.", codigo);
+    free(atual);
+    printf("Fruta de codigo %d excluída.", codigo);
 }
 
-int main() {
+int verificarFruta(No *lista, int codigo)
+{
+    No *atual = lista;
+
+    // Percorre a lista em busca do código
+    while (atual != NULL)
+    {
+        if (atual->fruta.codigo == codigo)
+        {
+            return 1; // Fruta encontrada
+        }
+        atual = atual->prox; // Move para o próximo nó
+    }
+
+    return 0; // Fruta não encontrada
+}
+
+void venderFruta(No *lista, int codigo, int quantidade)
+{
+    // Verificar o código da fruta na lista para garantir que ela existe
+    // Verificar a quantidade disponível da fruta para garantir que a quantidade solicitada para venda está no estoque
+    // Diminuir a quantidade da fruta no estoque após a venda
+    // Registrar a venda em um arquivo vendas.txt com informações como o código da fruta, nome, quantidade vendida e valor total da venda
+
+    // Procura a fruta pelo código
+    No *atual = lista;
+    while (atual != NULL)
+    {
+        if (atual->fruta.codigo == codigo)
+        {
+            // Verifica se a quantidade desejada está disponível
+            if (atual->fruta.quantidade >= quantidade)
+            {
+                // Calcula o valor da venda
+                float valorVenda = quantidade * atual->fruta.preco;
+
+                // Diminui a quantidade no estoque
+                atual->fruta.quantidade -= quantidade;
+
+                // Abre o arquivo para registrar a venda
+                FILE *arquivoVendas = fopen("vendas.txt", "a");
+                if (arquivoVendas == NULL)
+                {
+                    printf("Erro ao abrir o arquivo de vendas.\n");
+                    return;
+                }
+
+                // Escreve os detalhes da venda no arquivo
+                fprintf(arquivoVendas, "Código: %d\n", atual->fruta.codigo);
+                fprintf(arquivoVendas, "Nome: %s\n", atual->fruta.nome);
+                fprintf(arquivoVendas, "Quantidade vendida: %d\n", quantidade);
+                fprintf(arquivoVendas, "Valor total: R$%.2f\n", valorVenda);
+                fprintf(arquivoVendas, "----------------------\n");
+
+                // Fecha o arquivo
+                fclose(arquivoVendas);
+
+                printf("Venda realizada com sucesso!\n");
+                printf("Quantidade restante de %s: %d\n", atual->fruta.nome, atual->fruta.quantidade);
+            }
+            else
+            {
+                printf("Quantidade insuficiente em estoque para a venda.\n");
+            }
+            return;
+        }
+        atual = atual->prox; // Move para o próximo nó
+    }
+
+    // Se o código não foi encontrado
+    printf("Fruta com o código %d não encontrada.\n", codigo);
+}
+
+int main()
+{
+    int codigo, quantidade;
     No *listaFrutas = criarLista();
     int op;
 
@@ -261,10 +347,29 @@ int main() {
             listaFrutas = alterarFruta(listaFrutas);
             break;
         case 5:
-            // Função - excluir fruta
+            int codigoExclu;
+
+            printf("Digite o código da fruta que deseja excluir: ");
+            scanf("%d", &codigoExclu);
+            excluirFruta(&listaFrutas, codigoExclu);
+
+            // Com a função que percorre a lista e verifica se ela realmente tá lá, ela faz a verificação para saber se o codigo não foi encontrado
+            if (verificarFruta(listaFrutas, codigoExclu))
+            {
+                excluirFruta(&listaFrutas, codigoExclu);
+            }
+            else
+            {
+                printf("Fruta com código %d não encontrada. Não é possível excluir.\n", codigoExclu);
+            }
+
             break;
         case 6:
-            // Função - vender fruta(não faço ideia de como tem que ser isso)
+            printf("Digite o código da fruta para venda: ");
+            scanf("%d", &codigo);
+            printf("Digite a quantidade para vender: ");
+            scanf("%d", &quantidade);
+            venderFruta(listaFrutas, codigo, quantidade);
             break;
         case 7:
             printf("Encerrando o programa.\n");
