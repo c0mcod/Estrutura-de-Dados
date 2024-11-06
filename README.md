@@ -69,7 +69,7 @@ Este projeto é dividido em duas partes: **atividade** e **trabalho prático**.
 
 1. Clone o repositório no seu computador:
    ```bash
-   git clone https://github.com/seu-usuario/seu-repositorio.git
+   git clone https://github.com/c0mcod/Estrutura-de-Dados
    ```
 2. Compile o código com o comando:
    ```bash
