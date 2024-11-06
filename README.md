@@ -1,10 +1,8 @@
 # Estruturas de Dados em C
 
-Este repositório contém a atividade e o  trabalho prático proposto na disciplina de Estruturas de Dados pelo nosso professor Berg Carvalho, com foco em listas encadeadas e outras estruturas. 
+Este repositório contém a atividade e o trabalho prático proposto na disciplina de Estruturas de Dados pelo professor Berg Carvalho, com foco em listas encadeadas e manipulação de estruturas de dados usando C.
 
-
-* O objetivo deste trabalho prático é permitir que os alunos demonstrem suas habilidades
-adquiridas ao longo do curso de estrutura de dados no uso de listas, ponteiros e funções.*
+> **Objetivo**: Demonstrar o uso de listas encadeadas, ponteiros e funções para manipulação de dados em C, reforçando habilidades essenciais para o desenvolvimento de estruturas de dados.
 
 ## Sumário
 
@@ -12,35 +10,49 @@ adquiridas ao longo do curso de estrutura de dados no uso de listas, ponteiros e
 - [Pré-requisitos](#pré-requisitos)
 - [Funcionalidades](#funcionalidades)
 - [Como Executar](#como-executar)
-- [Exemplos de Uso](#exemplos-de-uso)
+  - [Online GDB](#online-gdb)
+  - [Localmente](#localmente)
 - [Contribuição](#contribuição)
 
 ## Descrição
 
-Este projeto contém a implementação de uma lista encadeada em C, incluindo operações de inserção, busca, exclusão e exibição de nós. Há uma função específica para inserir elementos na lista em ordem crescente, que o nosso professor pediu para implementar.
+Este projeto contém a implementação de uma lista encadeada em C, permitindo operações fundamentais como **inserção**, **busca**, **exclusão** e **exibição** de nós. Há uma função especial para inserir elementos de forma ordenada, atendendo aos requisitos da atividade prática.
 
 ## Pré-requisitos
 
-- Compilador C (gcc ou outro)
+- Compilador C (por exemplo, gcc)
 - Conhecimentos básicos em C e Git
 
 ## Funcionalidades
 
-- **criarLista**: inicializa uma lista vazia.
-- **inserirLista**: insere um novo elemento no início da lista.
-- **inserirOrdenado**: insere um elemento na posição correta para manter a lista ordenada.
-- **exibirLista**: exibe todos os elementos da lista.
-- **verificarVazia**: verifica se a lista está vazia.
-- **buscarLista**: busca por um elemento específico na lista.
-- **excluirLista**: exclui um elemento específico da lista.
-- **liberarLista**: libera a memória alocada para a lista.
+- **criarLista**: Inicializa uma lista vazia.
+- **inserirLista**: Insere um novo elemento no início da lista.
+- **inserirOrdenado**: Insere um elemento em ordem crescente.
+- **exibirLista**: Exibe todos os elementos presentes na lista.
+- **verificarVazia**: Verifica se a lista está vazia.
+- **buscarLista**: Busca um elemento específico na lista.
+- **excluirLista**: Exclui um elemento específico da lista.
+- **liberarLista**: Libera toda a memória alocada para a lista.
 
-## Exemplos de Uso
+## Como Executar
 
-```c
-struct Node* lista = criarLista();
-inserirOrdenado(&lista, 5);
-inserirOrdenado(&lista, 3);
-inserirOrdenado(&lista, 8);
-exibirLista(lista); // Saída: 3 -> 5 -> 8 -> NULL
-```
+### Online GDB
+
+1. Copie o código-fonte e cole em arquivos separados com os mesmos nomes (`main.c`, `mercado.c`).
+2. Execute o código clicando em **RUN**.
+
+### Localmente
+
+1. Clone o repositório no seu computador.
+2. Compile o código com o comando:
+   ```bash
+   gcc main.c mercado.c -o mercado
+   ```
+3. Execute o programa com:
+   ```bash
+   ./mercado
+   ```
+
+## Contribuição
+
+Este projeto foi desenvolvido individualmente. Sugestões e melhorias são bem-vindas! Caso queira contribuir, fique à vontade para abrir um pull request.
